@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-ui-dep
+  labels:
+   {{- include "ui.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: react-ui
+  template:
+    metadata:
+      labels:
+       {{- include "ui.labels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: react-ui
+          image: vikashashoke/ui
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 0.2
+              memory: 500Mi
+            requests:
+              cpu: 0.2
+              memory: 500Mi

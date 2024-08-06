@@ -1,0 +1,33 @@
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-ui
+  labels:
+    app: react-ui
+    env: prod
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: react-ui
+  template:
+    metadata:
+      labels:
+        app: react-ui
+        env: prod
+    spec:
+      containers:
+        - name: react-ui
+          image: vikashashoke/ui
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 1
+              memory: 2Gi
+            requests:
+              cpu: 1 
+              memory: 2Gi
+
